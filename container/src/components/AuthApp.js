@@ -1,11 +1,11 @@
 import React, { useRef, useEffect } from "react";
-import { mount } from 'marketing/MarketingApp';
+import { mount } from 'auth/AuthApp';
 import { useHistory } from "react-router-dom";
 
 
 // console.log(mount);
 
-export default () => {
+export default ({ onSignIn }) => {
     const ref = useRef(null);
     const history = useHistory()
     
@@ -20,7 +20,9 @@ export default () => {
                 const { pathname: currentActiveUrl } = history.location;
 
                 if(currentActiveUrl !== nextRouteLink) history.push(nextRouteLink);
-            }
+            },
+
+            onSignIn
         });
 
         history.listen(onParentNavigate);
